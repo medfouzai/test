@@ -218,9 +218,12 @@ class ArticleManager
     {
 
         $uri = ltrim($uri, '/');
+        try {
         $response = $this->httpClient->request($method, $this->base_url .'/'. $uri, $options);
-
-        return json_decode($response->getBody(), true);
+            return json_decode($response->getBody(), true);
+        } catch (ClientException $e) {
+            $e->getResponse();
+        }
     }
 
     /**
