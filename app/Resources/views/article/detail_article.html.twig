@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ article.title }}
+
+{% endblock %}
+    {% block stylesheets %}
+        <style>
+            form {
+                display: inline-block;
+            }
+        </style>
+    {% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="row">
+                <h3 class="text-center">{{ article.title }}</h3>
+            </div>
+            <p class="text-right">[ Par {{ article.created_by }} le {{ article.created_at|date("m/d/Y") }} ]</p>
+            {% if article.lead is defined %}
+            <p>{{ article.lead }}</p>
+            <hr>
+            {% endif %}
+            {% if article.body is defined %}
+            <p>{{ article.body }}</p>
+            <hr>
+            {% endif %}
+            <div class="row">
+                <a href="{{ path('list_articles') }}" class="btn btn-primary btn-lg active">Retour à la liste</a>
+                <button type="button" class="btn btn-primary btn-lg active pull-right" data-toggle="modal" data-target="#deleteArticle">Supprimer</button>
+                <div id="deleteArticle" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Supprimer un article</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>voulez-vous vraiment supprimer l'article <strong>{{ article.title }}</strong> ?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+                                {{ form(delete_form) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

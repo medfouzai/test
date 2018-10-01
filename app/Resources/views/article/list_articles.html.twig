@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    Liste des article
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="page-header">
+                <h1>Liste des articles</h1>
+            </div>
+            <div class="row">
+                <a href="{{ path('create_article') }}" class="btn btn-primary btn-lg active pull-right">Ajouter un
+                    article</a>
+            </div>
+            {% for article in articles %}
+                <div class="row">
+                    <p>{{ article.title }} [ Par {{ article.created_by }} le {{ article.created_at|date("m/d/Y") }}]</p>
+                    {% if article.lead is defined %}
+                        <p>{{ article.lead|slice(0,50) }}</p>
+                    {% endif %}
+                    <div class="row">
+                        <a href="{{ path('details_article', { 'slug': article.slug }) }}" class="pull-right">Lire la
+                            suite ></a>
+                    </div>
+                    <hr>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
