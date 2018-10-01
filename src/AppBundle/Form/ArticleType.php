@@ -13,8 +13,7 @@ class ArticleType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title', null, array('required'   => true))
-            ->add('lead')->add('body')->add('createdBy');
+        $builder->add('title')->add('lead')->add('body')->add('createdBy');
     }/**
      * {@inheritdoc}
      */
