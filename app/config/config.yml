@@ -30,6 +30,8 @@ framework:
     assets: ~
     php_errors:
         log: true
+    templating:
+        engines: ['twig']
 
 # Twig Configuration
 twig:
@@ -69,3 +71,11 @@ swiftmailer:
 sensio_framework_extra:
    router:
         annotations: false
+
+stof_doctrine_extensions:
+    default_locale: '%locale%'
+    orm:
+        default:
+            sluggable: true
+
+nelmio_api_doc: ~
